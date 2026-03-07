@@ -89,6 +89,16 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 4
 .pro-eyebrow{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:8px}
 .pro-text{font-size:9px;color:var(--muted);line-height:1.6;margin-bottom:8px}
 .pro-btn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--white);cursor:pointer;border-bottom:1px solid var(--red);padding-bottom:2px;display:inline-block}
+.rosa-box{background:#1a0a0f;border:1px solid #c8748a;border-left:3px solid #e8a0b0;padding:14px 16px;margin:10px 0;position:relative}
+.rosa-question{font-family:'Playfair Display',serif;font-style:italic;font-size:13px;color:#e8a0b0;margin-bottom:8px;line-height:1.5}
+.rosa-veredicto{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#c8748a}
+.rosa-aprueba{color:#e8c0ca;font-weight:bold}
+.rosa-reprueba{color:#a04060}
+.rosa-result-box{background:#1a0a0f;border:1px solid #c8748a;border-left:3px solid #e8a0b0;padding:16px 18px;margin-bottom:20px}
+.rosa-result-label{font-family:'Playfair Display',serif;font-style:italic;font-size:13px;color:#e8a0b0;margin-bottom:12px}
+.rosa-detalle{font-size:11px;color:#b08090;line-height:1.7;padding:4px 0;border-bottom:1px solid #2a1520}
+.rosa-detalle:last-of-type{border-bottom:none;margin-bottom:8px}
+.rosa-result-veredicto{font-size:9px;letter-spacing:3px;text-transform:uppercase;margin-top:10px}
 .pro-btn:hover{color:var(--red)}
 
 /* Quote block */
@@ -245,7 +255,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 4
   </div>
   <div class="hs-right">
     <div class="quote-block">
-      <div class="quote-label">El Instituto dictamina</div>
+      <div class="quote-label">La abuela Rosa dictamina</div>
       <p class="quote-text">&ldquo;Una comida es un accidente.<br>Tres comidas son un patr&oacute;n.<br><em>Un patr&oacute;n es un destino.</em>&rdquo;</p>
     </div>
     <div class="flow-item">
@@ -272,6 +282,10 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 4
     <div class="pro-block">
       <div class="pro-eyebrow">Instituto PRO &nbsp;◆&nbsp; Pr&oacute;ximamente</div>
       <p class="pro-text">Tres comidas de cada uno. Un patr&oacute;n. El Instituto dictamina si tienen futuro.</p>
+      <div class="rosa-box">
+        <div class="rosa-question">&iquest;La abuela Rosa aprobar&iacute;a a tu pareja en una cena familiar?</div>
+        <div class="rosa-veredicto" id="rosa-placeholder">Ella siempre tiene la &uacute;ltima palabra.</div>
+      </div>
       <div class="pro-btn">Quiero el an&aacute;lisis completo &nbsp;→</div>
     </div>
   </div>
@@ -285,23 +299,23 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 4
     <button class="modal-close-btn" id="modal-close">× Cerrar</button>
     <div class="modal-inner">
       <div class="loading-state" id="loading-state">
-        <div class="loading-title">Análisis en proceso</div>
-        <div class="loading-sub">Instituto deliberando</div>
+        <div class="loading-title">La abuela Rosa analiza</div>
+        <div class="loading-sub">No se apresura. Nunca.</div>
         <div class="loading-bar-wrap"><div class="loading-bar" id="loading-bar"></div></div>
         <div class="loading-pct" id="loading-pct">0%</div>
         <ul class="loading-steps">
-          <li class="l-step" id="ls-1"><span class="l-icon">◇</span>El Instituto recibe las muestras con ecuanimidad…</li>
-          <li class="l-step" id="ls-2"><span class="l-icon">◇</span>Analizando patrones de consumo visibles…</li>
-          <li class="l-step" id="ls-3"><span class="l-icon">◇</span>Detectando patrones de compatibilidad comensal…</li>
-          <li class="l-step" id="ls-4"><span class="l-icon">◇</span>Cruzando perfiles de compatibilidad…</li>
-          <li class="l-step" id="ls-5"><span class="l-icon">◇</span>El Instituto redacta el veredicto final…</li>
+          <li class="l-step" id="ls-1"><span class="l-icon">◇</span>La abuela Rosa recibe las fotos. Las examina en silencio.</li>
+          <li class="l-step" id="ls-2"><span class="l-icon">◇</span>Detecta lo que nadie más vería.</li>
+          <li class="l-step" id="ls-3"><span class="l-icon">◇</span>Cruza los datos con décadas de experiencia comensal.</li>
+          <li class="l-step" id="ls-4"><span class="l-icon">◇</span>Compara. Reflexiona. No apresura el juicio.</li>
+          <li class="l-step" id="ls-5"><span class="l-icon">◇</span>La abuela Rosa ha tomado una decisión.</li>
         </ul>
-        <p class="loading-final" id="loading-final">El Instituto tiene un veredicto.</p>
+        <p class="loading-final" id="loading-final">La abuela Rosa ha decidido.</p>
       </div>
 
       <div class="result-state" id="result-state">
         <div class="result-header">
-          <div class="result-eyebrow">Dictamen de compatibilidad comensal</div>
+          <div class="result-eyebrow">Dictamen de la abuela Rosa</div>
           <div class="result-diagnostico" id="r-diagnostico"></div>
         </div>
         <div class="result-section">
@@ -432,7 +446,7 @@ function callAPI() {
     if (apiDone) { if (apiResult) showResult(apiResult); else showError(apiError); }
   }, 7800);
 
-  var sys = 'Sos el sistema de análisis comensal del Instituto de Psicogastroentretenimiento Aplicado. REGLA ABSOLUTA: solo inferís desde lo que realmente se ve en la imagen. Cada conclusión anclada en un detalle visual concreto y específico. Nunca generalizás. Nunca inventás lo que no está. Si no se ve, no existe. VOZ: wildeana, lapidaria, irónica, nunca vulgar. Rioplatense. MODO 1 FOTO: analizás UNA persona comiendo. Observás qué eligió, cómo sostiene los cubiertos, postura, velocidad aparente, atención al plato, entorno, compañía o soledad. Desde esos detalles inferís microbioma probable y perfil afectivo-comensal. Nunca usás la palabra bacteria ni microbioma de forma literal. Hablás de "patrones", "señales", "microclima afectivo", "perfil comensal". El Instituto no explica — dictamina. MODO 2 FOTOS: analizás DOS personas por separado y cruzás perfiles. Dictaminás si pueden compartir mesa el resto de sus vidas. Compatibilidad ritual, velocidad, elección bajo presión, no solo dietaria. RESPONDÉS ÚNICAMENTE JSON sin markdown: {"modo":"perfil o compatibilidad","detalle_clave":"el detalle visual más revelador — una sola oración, concreto, anclado en algo visible","diagnostico":"una sola línea brutal irónica anclada en ese detalle","senales":["detalle visible → inferencia sin explicar el término","detalle visible → inferencia","detalle visible → inferencia"],"compatibilidad":"2 oraciones wildeanas — compatibilidad si son 2 fotos, perfil afectivo si es 1","riesgo":"un solo riesgo anclado en algo visto, irónico, sin explicación","frase_compartible":"máximo 12 palabras en primera persona que la gente quiera postear — el Instituto habla de vos"}';
+  var sys = 'Sos el sistema de análisis comensal del Instituto de Psicogastroentretenimiento Aplicado. REGLA ABSOLUTA: solo inferís desde lo que realmente se ve en la imagen. Cada conclusión anclada en un detalle visual concreto y específico. Nunca generalizás. Nunca inventás lo que no está. Si no se ve, no existe. VOZ: la abuela Rosa — presidenta secreta del Instituto. Wildeana, lapidaria, irónica, nunca vulgar. Rioplatense. Tiene décadas de experiencia observando cómo come la gente y sabe exactamente lo que eso revela. No explica sus métodos. Dictamina. MODO 1 FOTO: analizás UNA persona comiendo. Observás qué eligió, cómo sostiene los cubiertos, postura, velocidad aparente, atención al plato, entorno, compañía o soledad. Desde esos detalles inferís microbioma probable y perfil afectivo-comensal. Nunca usás la palabra bacteria ni microbioma de forma literal. Hablás de "patrones", "señales", "microclima afectivo", "perfil comensal". El Instituto no explica — dictamina. MODO 2 FOTOS: analizás DOS personas por separado y cruzás perfiles. Dictaminás si pueden compartir mesa el resto de sus vidas. Compatibilidad ritual, velocidad, elección bajo presión, no solo dietaria. RESPONDÉS ÚNICAMENTE JSON sin markdown: {"modo":"perfil o compatibilidad","detalle_clave":"el detalle visual más revelador — una sola oración, concreto, anclado en algo visible","diagnostico":"una sola línea brutal irónica anclada en ese detalle","senales":["detalle visible → inferencia sin explicar el término","detalle visible → inferencia","detalle visible → inferencia"],"compatibilidad":"2 oraciones wildeanas — compatibilidad si son 2 fotos, perfil afectivo si es 1","riesgo":"un solo riesgo anclado en algo visto, irónico, sin explicación","rosa":{"detalles":["detalle concreto visto en la foto → lo que la abuela Rosa interpretaría de eso","otro detalle real → su lectura inapelable"],"veredicto":"LA ABUELA ROSA LOS APRUEBA o LA ABUELA ROSA NO LOS RECIBE — sin matices"},"frase_compartible":"máximo 12 palabras en primera persona que la gente quiera postear — el Instituto habla de vos"}';
 
   // Build content array with all images
   var validFiles = filesData.filter(Boolean);
@@ -487,6 +501,24 @@ function showResult(p) {
   document.getElementById('r-riesgo').textContent = p.riesgo || '';
   var frase = p.frase_compartible || '';
   document.getElementById('r-frase').textContent = '“' + frase + '”';
+
+  // Rosa block
+  if (p.rosa) {
+    var rosaBox = document.getElementById('rosa-result');
+    if (!rosaBox) {
+      rosaBox = document.createElement('div');
+      rosaBox.id = 'rosa-result';
+      rosaBox.className = 'rosa-result-box';
+      document.getElementById('result-state').insertBefore(rosaBox, document.querySelector('.result-divider'));
+    }
+    var detalles = (p.rosa.detalles || []).map(function(d) {
+      return '<div class="rosa-detalle">◆ ' + d + '</div>';
+    }).join('');
+    var aprueba = p.rosa.veredicto && p.rosa.veredicto.toUpperCase().indexOf('APRUEBA') > -1;
+    rosaBox.innerHTML = '<div class="rosa-result-label">&iquest;La abuela Rosa aprobar&iacute;a a tu pareja?</div>' +
+      detalles +
+      '<div class="rosa-result-veredicto ' + (aprueba ? 'rosa-aprueba' : 'rosa-reprueba') + '">' + (p.rosa.veredicto || '') + '</div>';
+  }
   var shareMsg = encodeURIComponent('Fork You dice: "' + frase + '" — forkyou.quest');
   document.getElementById('share-x').onclick = function() { window.open('https://twitter.com/intent/tweet?text=' + shareMsg, '_blank'); };
   document.getElementById('share-wa').onclick = function() { window.open('https://wa.me/?text=' + shareMsg, '_blank'); };
